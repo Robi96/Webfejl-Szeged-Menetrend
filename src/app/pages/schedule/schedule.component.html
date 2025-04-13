@@ -1,0 +1,26 @@
+<div [ngClass]="selectedTheme">
+    <button (click)="selectedTheme = 'light'" [ngClass]="{'active': selectedTheme === 'light'}">Light</button>
+    <button (click)="selectedTheme = 'dark'" [ngClass]="{'active': selectedTheme === 'dark'}">Dark</button>
+    <p>Task text size:</p>
+    <input type="range" [(ngModel)]="fontSize" min="12" max="20" step="1">
+    <span [ngStyle]="{'font-size.px': fontSize}">({{fontSize}}px)</span>
+    <div class="container">
+        <select #chosenSchedule (change)="reload(chosenSchedule.selectedIndex)">
+            @for (vehicle of ScheduleObject; track $index) {
+                <option value="{{$index}}">{{vehicle.number}}</option>
+            }
+        </select>
+        
+        <h2>Járat száma</h2>
+        
+        <div>
+            <p>{{ScheduleObject[selectedIndex].number}}</p>
+        </div>
+        
+        <h2>Megállók</h2>
+        
+        <table>                
+            @for (stop of ScheduleObject[selectedIndex].stops; track stop) {<tr [ngStyle]="{'font-size.px': fontSize}">{{ stop }}</tr>} @empty {<tr>There are no items.</tr>}
+        </table>
+    </div>
+</div>

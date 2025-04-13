@@ -1,0 +1,6 @@
+<div [ngClass]="selectedTheme">
+    <button (click)="selectedTheme = 'light'" [ngClass]="{'active': selectedTheme === 'light'}">Light</button>
+    <button (click)="selectedTheme = 'dark'" [ngClass]="{'active': selectedTheme === 'dark'}">Dark</button>
+    <h1 [ngClass]="selectedTheme">Üdvözöljük a Szegedi menetrend kereső oldalán!</h1>
+    <h2 [ngClass]="selectedTheme">A menetrendben való böngészéshez kattintson az alábbi gombra!</h2>
+</div>
