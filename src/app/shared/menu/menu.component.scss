@@ -20,3 +20,16 @@ a {
     color: white;
     font-size: 20px;
 }
+.mdc-list-item:focus::before {
+    opacity: 0 !important;
+}
+
+.active-list-item {
+    background-color: rgba(114, 247, 74, 0.3);
+    color: gray;
+    font-weight: bold, italic;
+}
+
+mat-nav-list {
+    min-width: 200px;
+}

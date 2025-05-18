@@ -4,23 +4,40 @@
     <p>Task text size:</p>
     <input type="range" [(ngModel)]="fontSize" min="12" max="20" step="1">
     <span [ngStyle]="{'font-size.px': fontSize}">({{fontSize}}px)</span>
-    <div class="container">
-        <select #chosenSchedule (change)="reload(chosenSchedule.selectedIndex)">
-            @for (vehicle of ScheduleObject; track $index) {
+    <div class ="inputVehicle">
+        <a>Új járat hozzáadása</a>
+        <input type="number" [(ngModel)]="newVehicleNumber">
+        <button mat-basic-button (click)="addVehicle()">Hozzáadás</button>
+    </div>
+    <div class ="inputStop">
+            <h2>Új megálló hozzáadása ide</h2>
+            <input matInput placeholder="Új megálló hozzáadása ide" [(ngModel)]="newVehicleStop">
+        <select #chosenVehicle (change)="reload(chosenVehicle.selectedIndex)">
+            @for (vehicle of schedule; track trackById($index, vehicle)) {
                 <option value="{{$index}}">{{vehicle.number}}</option>
             }
         </select>
         
+        <button mat-basic-button (click)="addStop(selectedIndex)">Hozzáadás</button>
+    </div>
+        <h2>{{ title }}</h2>
+    <div class="container">
+        <select #chosenSchedule (change)="reload(chosenSchedule.selectedIndex)">
+            @for (vehicle of schedule; track trackById($index, vehicle)) {
+            <option value="{{$index}}">{{vehicle.number}}</option>
+            }
+        </select>
+
         <h2>Járat száma</h2>
-        
+
         <div>
-            <p>{{ScheduleObject[selectedIndex].number}}</p>
+            <p>{{schedule[selectedIndex].number}}</p>
         </div>
-        
+
         <h2>Megállók</h2>
-        
+
         <table>                
-            @for (stop of ScheduleObject[selectedIndex].stops; track stop) {<tr [ngStyle]="{'font-size.px': fontSize}">{{ stop }}</tr>} @empty {<tr>There are no items.</tr>}
+            @for (stop of schedule[selectedIndex].stops; track stop) {<tr [ngStyle]="{'font-size.px': fontSize}">{{ stop }}</tr>} @empty {<tr>There are no items.</tr>}
         </table>
     </div>
 </div>

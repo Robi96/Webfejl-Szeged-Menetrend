@@ -2,5 +2,13 @@
     <button (click)="selectedTheme = 'light'" [ngClass]="{'active': selectedTheme === 'light'}">Light</button>
     <button (click)="selectedTheme = 'dark'" [ngClass]="{'active': selectedTheme === 'dark'}">Dark</button>
     <h1 [ngClass]="selectedTheme">Üdvözöljük a Szegedi menetrend kereső oldalán!</h1>
+    @if (isLoggedIn){
     <h2 [ngClass]="selectedTheme">A menetrendben való böngészéshez kattintson az alábbi gombra!</h2>
+    <button mat-stroked-button class="schedules" (click)="changePage()">Menetrend böngészése</button>
+    }
+    @if (!isLoggedIn){
+        <h2 [ngClass]="selectedTheme">A bejelentkezéshez, vagy regisztrációhoz kattintson az alábbi gombokra!</h2>
+        <button mat-stroked-button class="login" (click)="changeLogin()">Bejelentkezés</button>
+        <button mat-stroked-button class="signup" (click)="changeSignup()">Regisztráció</button>
+    }
 </div>
